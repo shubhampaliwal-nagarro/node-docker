@@ -1,0 +1,11 @@
+module.exports = {
+    DATABASE_PORT: process.env.DATABASE_PORT,
+    DATABASE_HOST: process.env.DATABASE_HOST,
+    DATABASE_COLLECTION: process.env.DATABASE_COLLECTION,
+    ROOT_USERNAME: process.env.MONGO_INITDB_ROOT_USERNAME,
+    ROOT_PASSWORD: process.env.MONGO_INITDB_ROOT_PASSWORD,
+    DATABASE_NAME: process.env.MONGO_INITDB_DATABASE,
+    REDIS_URL: process.env.REDIS_URL || "redis",
+    REDIS_PORT: process.env.REDIS_PORT || 6379,
+    SESSION_SECRET: process.env.SESSION_SECRET
+}
