@@ -9,6 +9,11 @@ RUN if [ "$NODE_ENV" = "production" ]; \
 
 COPY . .
 
-FROM base as production
+# Build the application
+RUN npm run build
+
+# Production stage
+FROM node:14-alpine as production
+WORKDIR /app
 COPY --from=build /app/dist ./dist
 CMD [ "node", "index.js" ]

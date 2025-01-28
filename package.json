@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -L index.js"
+    "dev": "nodemon -L index.js",
+    "build": "webpack --watch"
   },
   "keywords": [],
   "author": "",
