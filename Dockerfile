@@ -9,9 +9,6 @@ RUN if [ "$NODE_ENV" = "production" ]; \
 
 COPY . .
 
-FROM base as build
-RUN npm run build
-
 FROM base as production
 COPY --from=build /app/dist ./dist
 CMD [ "node", "index.js" ]
