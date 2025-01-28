@@ -13,5 +13,5 @@ COPY . .
 # Production stage
 FROM node:14-alpine as production
 WORKDIR /app
-COPY --from=build /app/dist ./dist
+COPY --from=build /app ./dist
 CMD [ "node", "index.js" ]
