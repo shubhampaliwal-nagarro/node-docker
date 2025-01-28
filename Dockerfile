@@ -1,4 +1,4 @@
-FROM node:14-alpine AS base
+FROM node:14-alpine AS build
 WORKDIR /app
 COPY package.json .
 
@@ -15,5 +15,5 @@ RUN npm run build
 # Production stage
 FROM node:14-alpine as production
 WORKDIR /app
-COPY --from=build /app /app
+COPY --from=build /app/dist ./dist
 CMD [ "node", "index.js" ]
