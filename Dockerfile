@@ -15,5 +15,5 @@ RUN npm run build
 # Production stage
 FROM node:14-alpine as production
 WORKDIR /app
-COPY --from=build /app ./dist
+COPY --from=build /app /app
 CMD [ "node", "index.js" ]
