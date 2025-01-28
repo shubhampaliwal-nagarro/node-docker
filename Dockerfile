@@ -1,7 +1,17 @@
-FROM node:18 AS base
+FROM node:14-alpine AS base
 WORKDIR /app
 COPY package.json .
-RUN npm install
+
+RUN if [ "$NODE_ENV" = "production" ]; \
+    then npm install --only=production; \
+    else npm install; \
+    fi
+
 COPY . .
-EXPOSE 3000
-CMD [ "npm", "run", "dev" ]
+
+FROM base as build
+RUN npm run build
+
+FROM base as production
+COPY --from=build /app/dist ./dist
+CMD [ "node", "index.js" ]

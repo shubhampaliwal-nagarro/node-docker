@@ -1,0 +1,23 @@
+services:
+
+  nginx:
+    ports:
+      - 80:80
+  node-app:
+    build: 
+      context: .
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - ./.env
+    command: npm run dev
+
+  mongo:
+    restart: always
+    env_file:
+      - ./.env

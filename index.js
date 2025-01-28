@@ -40,6 +40,10 @@ console.log(CONNECTION_URI)
 mongoose.connect(CONNECTION_URI).then(() => console.log("CONNECTED TO MONGO")).catch((e) => console.log(e))
 const port = 3000
 
+app.use("/api", (req,res) => {
+    res.send("Hello World")
+});   
+
 app.use("/api", ArticleRouter);   // <- add
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -1,0 +1,7 @@
+services:
+  node-app:
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=production
+    command: node index.js

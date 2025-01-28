@@ -1,8 +1,19 @@
 services:
+
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/nginx.conf:ro
+    networks:
+      - node_network
+    depends_on:
+      - node-app
+
   node-app:
     build: .
-    ports:
-      - ${PORT}:${PORT}
     volumes:
       - ./:/app:ro
       - /app/node_modules
@@ -14,6 +25,8 @@ services:
       - REDIS_PORT=6379
     env_file:
       - ./.env
+    networks:
+      - node_network
 
   mongo:
     image: mongo
@@ -32,3 +45,6 @@ services:
 
 volumes:
   mongo-db:
+
+networks:
+  node_network:

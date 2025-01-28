@@ -20,6 +20,7 @@ router.post("/articles", async (request, response) => {
 });
 
 router.get("/articles", async (request, response) => {
+    console.log("GET /articles");
     try {
         const articles = await ArticleModel.find({});
         response.send(articles);
